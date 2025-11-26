@@ -1,166 +1,127 @@
-🛠️ Expense Tracker – Backend (Node.js + Express + MongoDB)
+📱 ✨ EXPENSE TRACKER – ANDROID APP (KOTLIN)
 
-A secure backend REST API built using Node.js, Express, and MongoDB, supporting authentication and CRUD operations for an expense tracking system.
+A modern Android application built using Kotlin, ViewBinding, Retrofit, and Material UI.
+This app communicates with a secure Node.js backend using protected JWT authentication with automatic token refresh.
 
-This backend powers the Android app built for an internship submission.
+⭐ Features
+🔐 Authentication
 
-🚀 Features
-🔐 Authentication (JWT)
+User Login
 
-Register User
+User Registration
 
-Login User
+JWT Access Token
 
-Access Token + Refresh Token
+Auto Refresh Token (TokenAuthenticator + AuthInterceptor)
 
-Auto Refresh Access Token when expired
-
-Secure password hashing with bcrypt
-
-Token stored in HTTP-only cookies (optional)
+Logout (clears user session)
 
 💰 Expense Management
 
-Create Expense
+Add Expense
 
-Get All Expenses
+View All Expenses
 
-Update Expense
+Edit Expense
 
 Delete Expense
 
-All routes protected (requires Bearer token)
+RecyclerView with Instant UI Updates
 
-⚙️ Developer Friendly
+🎨 Modern UI / UX
 
-Modular folder structure
+Gradient backgrounds
 
-Error handling middleware
+Material Design UI
 
-Connected with MongoDB using Mongoose
+ViewBinding
 
-Validations & cleaner API responses
+Smooth Dialog UI for editing expenses
 
-Async handler to avoid try/catch clutter
+🛠️ Tech Stack
 
-📁 Folder Structure
-backend/
-├── src/
-│   ├── controllers/
-│   │   ├── user.controller.js
-│   │   └── expense.controller.js
-│   │
-│   ├── models/
-│   │   ├── user.model.js
-│   │   └── expense.model.js
-│   │
-│   ├── routes/
-│   │   ├── user.routes.js
-│   │   └── expense.routes.js
-│   │
-│   ├── middlewares/
-│   │   ├── auth.middleware.js
-│   │   └── error.middleware.js
-│   │
-│   ├── utils/
-│   │   ├── ApiResponse.js
-│   │   ├── ApiError.js
-│   │   ├── asyncHandler.js
-│   │   └── constants.js
-│   │
-│   ├── db/
-│   │   └── index.js (MongoDB connection)
-│   │
-│   └── app.js
+Languages & Libraries
+
+Kotlin
+
+Android ViewBinding
+
+Retrofit + OkHttp
+
+Token Authenticator
+
+RecyclerView
+
+Material Components
+
+Architecture
+
+MVVM-lite (Managers + Models + Activities)
+
+📁 Project Structure (Highlighted)
+app/
+├── src/main/java/com.example.expenseinternshipapp/
+│   ├── Activity/              ← Login, Register, Main
+│   ├── Adapter/               ← ExpenseAdapter
+│   ├── ApiManagers/           ← Retrofit API handler
+│   ├── AuthInterceptor/       ← Token refresh & authentication
+│   ├── DataModel/             ← All request/response models
+│   └── URLs/                  ← RetrofitInstance (Base URL)
 │
-├── package.json
-├── .env.example
-└── server.js
+├── res/                       ← XML layouts, drawables, UI
+└── build.gradle.kts
 
-🔧 Installation
-1️⃣ Install dependencies
-cd backend
-npm install
+🔗 API Base URL
 
-2️⃣ Create .env file
+Set inside RetrofitInstance.kt:
 
-Create:
-
-MONGO_URI=your_mongo_url
-ACCESS_TOKEN_SECRET=your_secret
-REFRESH_TOKEN_SECRET=your_other_secret
-ACCESS_TOKEN_EXPIRY=10m
-REFRESH_TOKEN_EXPIRY=7d
-PORT=3000
-
-🔗 API Endpoints
-🧑‍💻 User Routes
-Method	Endpoint	Description
-POST	/api/v1/user/register-user	Register user
-POST	/api/v1/user/login-user	Login user
-POST	/api/v1/user/refresh-access-token	Refresh Access Token
-💰 Expense Routes
-Method	Endpoint	Description
-POST	/api/v1/expense/create-expense	Add expense
-GET	/api/v1/expense/get-expense	Get all expenses
-PATCH	/api/v1/expense/update-expense/:id	Update expense
-DELETE	/api/v1/expense/delete-expense/:id	Delete expense
-▶️ How to Run
-npm run dev
+const val BASE_URL = "http://10.0.2.2:3000/api/v1/"
 
 
-Backend runs on:
+(Only for emulator – maps to your local backend)
 
-http://localhost:3000
+▶️ How to Run the Android App
 
+Clone the repository
 
-Android uses:
+Open the app/ folder in Android Studio
 
-http://10.0.2.2:3000/api/v1/
+Add inside AndroidManifest.xml:
 
-🛡️ Authentication Flow
-
-User logs in → backend returns accessToken + refreshToken
-
-Every request uses Bearer accessToken
-
-If access token expires → backend returns 401
-
-Android app automatically calls:
-
-POST /user/refresh-access-token
+android:usesCleartextTraffic="true"
 
 
-Backend issues new tokens
+Run your backend first
 
-Original request is retried automatically
+Then run Android app on emulator or device
 
-📦 API Response Format
+🧪 Important Notes
 
-Every response uses unified structure:
+Access token refresh is fully automatic
 
-{
-  "success": true,
-  "message": "Some message",
-  "data": { ... }
-}
+Tokens stored using SharedPreferences
+
+Logout clears access & refresh tokens
+
+📦 Generate Release APK
+
+Go to:
+
+Build → Generate Signed Bundle / APK → APK → release
 
 
-Errors follow:
+APK location:
 
-{
-  "success": false,
-  "message": "Error message"
-}
+app/release/app-release.apk
 
 📝 What I Learned
 
-JWT Auth with Refresh Tokens
+API Integration with Retrofit
 
-Writing modular Express API
+Handling JWT Authentication
 
-MongoDB with Mongoose
+Token Refresh Flow
 
-Middleware & error handling
+Professional Android Project Structure
 
-Connecting Android app to Node.js backend
+Building Attractive UI with Material + ViewBinding
